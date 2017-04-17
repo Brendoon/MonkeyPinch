@@ -26,9 +26,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="I5o-jK-Z4A" appends="YES" id="Ilt-Pb-Uta"/>
                                     <outletCollection property="gestureRecognizers" destination="9KS-pT-AxX" appends="YES" id="B32-gX-999"/>
                                     <outletCollection property="gestureRecognizers" destination="nAc-22-rcH" appends="YES" id="HK9-eR-6rx"/>
+                                    <outletCollection property="gestureRecognizers" destination="pUY-vR-sOa" appends="YES" id="xkB-Hw-wNC"/>
                                 </connections>
                             </imageView>
                             <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="monkey" translatesAutoresizingMaskIntoConstraints="NO" id="eYE-D8-1L0">
@@ -36,28 +36,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="cxs-RQ-BSx" appends="YES" id="XPC-D9-otC"/>
                                     <outletCollection property="gestureRecognizers" destination="laD-tn-7f3" appends="YES" id="iXm-t6-v2c"/>
                                     <outletCollection property="gestureRecognizers" destination="pNd-7o-cry" appends="YES" id="Vtn-vU-Wtj"/>
+                                    <outletCollection property="gestureRecognizers" destination="O9k-3K-9Hm" appends="YES" id="peK-EU-Qpd"/>
                                 </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="bananaPan" destination="pUY-vR-sOa" id="GOj-n6-gX1"/>
+                        <outlet property="monkeyPan" destination="O9k-3K-9Hm" id="6CK-p3-rtp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="cxs-RQ-BSx">
-                    <connections>
-                        <action selector="handlePanWithRecognizer:" destination="BYZ-38-t0r" id="SFB-xN-4g7"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="jZm-Ix-QlB"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="I5o-jK-Z4A">
-                    <connections>
-                        <action selector="handlePanWithRecognizer:" destination="BYZ-38-t0r" id="v3e-3c-KUl"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="sT8-rM-prE"/>
-                    </connections>
-                </panGestureRecognizer>
                 <pinchGestureRecognizer id="laD-tn-7f3">
                     <connections>
                         <action selector="handlePinchWithRecognizer:" destination="BYZ-38-t0r" id="Rnq-T6-uXu"/>
@@ -79,9 +71,20 @@
                 <rotationGestureRecognizer id="nAc-22-rcH">
                     <connections>
                         <action selector="handleRotateWithRecognizer:" destination="BYZ-38-t0r" id="RsS-aW-tnW"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="cdB-9h-Afm"/>
                     </connections>
                 </rotationGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="O9k-3K-9Hm">
+                    <connections>
+                        <action selector="handlePanWithRecognizer:" destination="BYZ-38-t0r" id="MHL-Hv-ded"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Dfv-ut-kRU"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="pUY-vR-sOa">
+                    <connections>
+                        <action selector="handlePanWithRecognizer:" destination="BYZ-38-t0r" id="KWj-6x-PFV"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Z7f-xg-HFd"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>

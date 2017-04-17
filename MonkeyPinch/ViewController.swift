@@ -12,46 +12,57 @@ import SceneKit
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    var chomPlayer: AVAudioPlayer? = nil
+    var player: AVAudioPlayer?
     
-    func loadSound(filename:NSString) -> AVAudioPlayer {
-        let url = Bundle.main.url(forResource: filename as String, withExtension: "caf")
-        var player = AVAudioPlayer()
+    @IBOutlet var monkeyPan: UIPanGestureRecognizer!
+    @IBOutlet var bananaPan: UIPanGestureRecognizer!
+    
+    func playSound() -> AVAudioPlayer {
+        let url = Bundle.main.url(forResource: "CollectBanana", withExtension: "wav")!
         
-        do{
-            player = try AVAudioPlayer(contentsOf: url!)
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player!.prepareToPlay()
             
-        } catch {
-            print("Error")
+        } catch let error {
+            print(error.localizedDescription)
         }
-        player.prepareToPlay()
-        return player
+        return player!
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let filteredSubviews = self.view.subviews.filter { (self) -> Bool in
-            return self is UIImageView
+        let filteredSubviews = self.view.subviews.filter { (x) -> Bool in
+            x.isKind(of: UIImageView.self)
         }
         // 2
         for view in filteredSubviews  {
             // 3
-            let recognizer = UITapGestureRecognizer(target: self, action:#selector(handlePan(recognizer:)))
+            let recognizer = UITapGestureRecognizer(target: self, action:#selector(handleTap(recognizer:)))
             // 4
             recognizer.delegate = self
             view.addGestureRecognizer(recognizer)
             
             //TODO: Add a custom gesture recognizer too
+            recognizer.require(toFail: monkeyPan)
+            recognizer.require(toFail: bananaPan)
         }
-        self.chomPlayer = self.loadSound(filename: "chomp")
+        
+        player = playSound()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func handleTap(recognizer: UITapGestureRecognizer) {
+       self.player?.play()
+    }
+    
     @IBAction func handlePan(recognizer:UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self.view)
         if let view = recognizer.view {
